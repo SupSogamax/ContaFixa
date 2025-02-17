@@ -1,0 +1,294 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0077b6; /* Fundo azul */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    background-color: #ffffff; /* Fundo branco */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #0077b6; /* Azul para o título */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.filtro {
+    margin-bottom: 20px;
+}
+
+.filtro label {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #0077b6; /* Azul para o texto do filtro */
+}
+
+.filtro select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #0077b6; /* Azul para o cabeçalho */
+    color: white;
+}
+
+/* Cores das linhas com base no status */
+tr.vencido {
+    background-color: #f30909; /* Vermelho claro para vencido */
+}
+
+tr.proximo {
+    background-color: #ffa704d0; /* Laranja claro para próximo */
+}
+
+tr.ok {
+    background-color: #ccffcc; /* Verde claro para ok */
+}
+
+/* Estilos do Modal */
+/* Estilos para o modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px; /* Define uma largura máxima para o modal */
+    border-radius: 10px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+}
+
+/* Estilos para os campos do formulário */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #0077b6;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+/* Estilos para o botão de fechar */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+/* Estilos anteriores permanecem os mesmos */
+
+/* Ajustes para o formulário */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #0077b6; /* Azul para os labels */
+}
+
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+/* Estilos anteriores permanecem os mesmos */
+
+/* Estilo para o botão de edição */
+.btn-editar {
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-editar:hover {
+    background-color: #e0a800;
+}
+
+/* Estilos anteriores permanecem os mesmos */
+
+/* Centralizar o dia de vencimento */
+.centralizado {
+    text-align: center;
+}
+
+/* Ajustes para o modal */
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-sizing: border-box; /* Evita que o conteúdo ultrapasse o modal */
+}
+
+/* Estilos para os filtros */
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filtro {
+    flex: 1 1 200px;
+}
+
+.filtro label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #0077b6;
+}
+
+.filtro input, .filtro select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+/* Estilos anteriores permanecem os mesmos */
+
+/* Ajustes para o modal */
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-sizing: border-box; /* Evita que o conteúdo ultrapasse o modal */
+}
+
+/* Centralizar o dia de vencimento */
+.centralizado {
+    text-align: center;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Contas Fixas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Controle de Contas Fixas</h1>
+        <button id="abrirModal">Cadastrar Nova Despesa</button>
+        
+        <!-- Filtros -->
+        <div class="filtros">
+            <div class="filtro">
+                <label for="filtroEmpresa">Filtrar por Empresa:</label>
+                <select id="filtroEmpresa">
+                    <option value="Todas">Todas</option>
+                    <!-- As opções serão preenchidas dinamicamente via JavaScript -->
+                </select>
+            </div>
+            <div class="filtro">
+                <label for="filtroObservacao">Filtrar por Observação:</label>
+                <input type="text" id="filtroObservacao" placeholder="Digite uma observação">
+            </div>
+            <div class="filtro">
+                <label for="filtroDiaVencimento">Filtrar por Dia de Vencimento:</label>
+                <input type="number" id="filtroDiaVencimento" min="1" max="31" placeholder="Dia">
+            </div>
+            <div class="filtro">
+                <label for="filtroTipoDespesa">Filtrar por Tipo de Despesa:</label>
+                <select id="filtroTipoDespesa">
+                    <option value="Todas">Todas</option>
+                    <!-- As opções serão preenchidas dinamicamente via JavaScript -->
+                </select>
+            </div>
+        </div>
+
+        <table id="contasTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Agente</th>
+                    <th>Descrição</th>
+                    <th class="centralizado">Dia do Vencimento</th>
+                    <th>Valor</th>
+                    <th>Empresa</th>
+                    <th>Tipo de Despesa</th>
+                    <th>Observação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas serão preenchidas dinamicamente via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+   <!-- Modal para cadastrar/editar despesa -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span id="fecharModal" class="close">&times;</span>
+        <h2 id="modalTitulo">Cadastrar Nova Despesa</h2>
+        <form id="formDespesa">
+            <input type="hidden" id="idDespesa" name="idDespesa"> <!-- Campo oculto para ID da despesa -->
+            
+            <!-- ID e Agente como primeiros campos -->
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" required>
+
+            <label for="agente">Agente:</label>
+            <input type="text" id="agente" name="agente" required>
+
+            <!-- Demais campos na nova ordem -->
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required>
+
+            <label for="diaVencimento">Dia do Vencimento:</label>
+            <input type="number" id="diaVencimento" name="diaVencimento" min="1" max="31" required>
+
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" name="valor" step="0.01" required>
+
+            <label for="empresa">Empresa:</label>
+            <select id="empresa" name="empresa" required>
+                <!-- As opções serão preenchidas dinamicamente via JavaScript -->
+            </select>
+
+            <label for="tipoDespesa">Tipo de Despesa:</label>
+            <select id="tipoDespesa" name="tipoDespesa" required>
+                <!-- As opções serão preenchidas dinamicamente via JavaScript -->
+            </select>
+
+            <label for="observacao">Observação:</label>
+            <input type="text" id="observacao" name="observacao">
+
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+</div>
+            </form>
+        </div>
+    </div>
+    
+    <script type="module" src="script.mjs"></script>
+</body>
+</html>
