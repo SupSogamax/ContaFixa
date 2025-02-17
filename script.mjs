@@ -84,8 +84,6 @@ function abrirModalEdicao(id) {
   id = Number(id)
   const conta = contas.find(conta => conta.id === id);
   
-  
-  
   if (conta) {
     editando = true;
     modalTitulo.textContent = "Editar Despesa";
@@ -128,14 +126,16 @@ formDespesa.addEventListener("submit", async (event) => {
   let conta;
   let idFire;
   try {
-    contas.find(conta => conta.id === Number(id))
+
+    conta = contas.find(conta => conta.id === Number(id))
+    
     idFire = conta.firestoreId;  
   } catch (error) {
     
   }
   
   const despesa = {
-    id: id,
+    id: Number(id),
     agente: document.getElementById("agente").value,
     descricao: document.getElementById("descricao").value,
     diaVencimento: parseInt(document.getElementById("diaVencimento").value),
@@ -147,6 +147,7 @@ formDespesa.addEventListener("submit", async (event) => {
 
   try {
     if (editando) {
+      
       const contaRef = doc(db, "contas", idFire);
       await updateDoc(contaRef, despesa);
       window.location.reload()
@@ -168,8 +169,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   const buttonsEdit = document.querySelectorAll('.btn-editar')
   buttonsEdit.forEach(el=>{el.addEventListener("click",(e)=>{
     let idConta = e.target.parentElement.parentElement.querySelector("td").textContent
-    console.log(idConta);
-    
     abrirModalEdicao(idConta)
   })} )
   
