@@ -5,31 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de Contas Fixas</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css">
 </head>
 <body>
+    <div class="container-loud">
+        <div class="loud"></div>
+      </div>
+    
+    
     <div class="container">
         <h1>Controle de Contas Fixas</h1>
-        <button id="abrirModal">Cadastrar Nova Despesa</button>
+        <button id="abrirModal">
+            <i class="ri-add-circle-line"></i> Cadastrar Nova Despesa
+        </button>
+        
         
         <!-- Filtros -->
         <div class="filtros">
             <div class="filtro">
-                <label for="filtroEmpresa">Filtrar por Empresa:</label>
+                <label for="filtroEmpresa"><i class="ri-building-line"></i> Empresa:</label>
                 <select id="filtroEmpresa">
                     <option value="Todas">Todas</option>
                     <!-- As opções serão preenchidas dinamicamente via JavaScript -->
                 </select>
             </div>
             <div class="filtro">
-                <label for="filtroObservacao">Filtrar por Observação:</label>
-                <input type="text" id="filtroObservacao" placeholder="Digite uma observação">
+                <label for="filtroObservacao"><i class="ri-chat-1-line"></i> Observação:</label>
+                <input type="text" id="filtroObservacao" placeholder="Ex: Pagamento">
             </div>
             <div class="filtro">
-                <label for="filtroDiaVencimento">Filtrar por Dia de Vencimento:</label>
-                <input type="number" id="filtroDiaVencimento" min="1" max="31" placeholder="Dia">
-            </div>
+                <label for="filtroDiaVencimento"><i class="ri-calendar-event-line"></i> Dia de Vencimento:</label>
+                <input type="number" id="filtroDiaVencimento" min="1" max="31" placeholder="Ex: 15">
+            </div>            
             <div class="filtro">
-                <label for="filtroTipoDespesa">Filtrar por Tipo de Despesa:</label>
+                <label for="filtroTipoDespesa"><i class="ri-money-dollar-circle-line"></i> Tipo de Despesa:</label>
                 <select id="filtroTipoDespesa">
                     <option value="Todas">Todas</option>
                     <!-- As opções serão preenchidas dinamicamente via JavaScript -->

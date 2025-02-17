@@ -1,5 +1,26 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  doc,
+  updateDoc,
+} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+
+const loading = () => {
+  const loadingContainer = document.querySelector(".container-loud");
+
+  loadingContainer.style.display = "flex";
+
+  window.addEventListener("load", () => {
+    setInterval(() => {
+      loadingContainer.style.display = "none";
+    }, 500);
+  });
+};
+
+loading();
 
 const firebaseConfig = {
   apiKey: "AIzaSyCCs0S8CbwwYVBI0ZFAG8-p2o-sbdnjHBQ",
@@ -8,7 +29,7 @@ const firebaseConfig = {
   storageBucket: "contas-fixas-ec60f.firebasestorage.app",
   messagingSenderId: "56045884403",
   appId: "1:56045884403:web:07cfdea4581699174bb886",
-  measurementId: "G-7KV3ZLLWZ6"
+  measurementId: "G-7KV3ZLLWZ6",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -16,7 +37,14 @@ const db = getFirestore(app);
 
 let contas = [];
 const empresas = ["Empresa A", "Empresa B", "Empresa C"];
-const tiposDespesa = ["Aluguel", "Energia", "Água", "Internet", "Telefone", "Outros"];
+const tiposDespesa = [
+  "Aluguel",
+  "Energia",
+  "Água",
+  "Internet",
+  "Telefone",
+  "Outros",
+];
 
 const tableBody = document.querySelector("#contasTable tbody");
 const modal = document.getElementById("modal");
@@ -34,14 +62,17 @@ const idDespesaInput = document.getElementById("idDespesa");
 
 let editando = false;
 
-function addFilterOptions(){
-
-    empresas.forEach(em => filtroEmpresa.add(new Option(em), selectEmpresa.add(new Option(em))));
-    tiposDespesa.forEach(ds => filtroTipoDespesa.add(new Option(ds), selectTipoDespesa.add(new Option(ds))));
-
-
+function addFilterOptions() {
+  empresas.forEach((em) => {
+    filtroEmpresa.add(new Option(em));
+    selectEmpresa.add(new Option(em));
+  });
+  tiposDespesa.forEach((ds) => {
+    filtroTipoDespesa.add(new Option(ds));
+    selectTipoDespesa.add(new Option(ds));
+  });
 }
-addFilterOptions()
+addFilterOptions();
 
 async function getContas() {
   contas = [];
@@ -58,11 +89,10 @@ async function getContas() {
   }
 }
 
-
 function renderizarTabela() {
   tableBody.innerHTML = "";
-  contas.forEach(conta => {
-    conta.observacao === undefined? conta.observacao = "": conta.observacao
+  contas.forEach((conta) => {
+    conta.observacao === undefined ? (conta.observacao = "") : conta.observacao;
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${conta.id}</td>
@@ -76,27 +106,28 @@ function renderizarTabela() {
       <td><button class="btn-editar">Editar</button></td>
     `;
     tableBody.appendChild(row);
-    
   });
 }
-function abrirModalEdicao(id) {
 
-  id = Number(id)
-  const conta = contas.find(conta => conta.id === id);
-  
+function abrirModalEdicao(id) {
+  id = Number(id);
+  const conta = contas.find((conta) => conta.id === id);
+
   if (conta) {
     editando = true;
     modalTitulo.textContent = "Editar Despesa";
     idDespesaInput.value = Number(conta.id);
-    document.getElementById("id").value = conta.id
+    document.getElementById("id").value = conta.id;
     document.getElementById("descricao").value = conta.descricao;
     document.getElementById("valor").value = conta.valor;
     document.getElementById("diaVencimento").value = conta.diaVencimento;
-    document.getElementById("empresa").selectedOptions[0].textContent = conta.empresa;
+    document.getElementById("empresa").selectedOptions[0].textContent =
+      conta.empresa;
     document.getElementById("observacao").value = conta.observacao;
-    document.getElementById("tipoDespesa").selectedOptions[0].textContent = conta.tipoDespesa;
+    document.getElementById("tipoDespesa").selectedOptions[0].textContent =
+      conta.tipoDespesa;
     document.getElementById("agente").value = conta.agente;
-    modal.style.display = "block";
+    modal.style.display = "flex";
   }
 }
 
@@ -104,7 +135,7 @@ abrirModalBtn.addEventListener("click", () => {
   editando = false;
   modalTitulo.textContent = "Cadastrar Nova Despesa";
   formDespesa.reset();
-  modal.style.display = "block";
+  modal.style.display = "flex";
 });
 
 fecharModalBtn.addEventListener("click", () => {
@@ -119,21 +150,17 @@ window.addEventListener("click", (event) => {
 
 formDespesa.addEventListener("submit", async (event) => {
   event.preventDefault();
-  
-  
+
   const id = document.querySelector("#id").value;
-  
+
   let conta;
   let idFire;
   try {
+    conta = contas.find((conta) => conta.id === Number(id));
 
-    conta = contas.find(conta => conta.id === Number(id))
-    
-    idFire = conta.firestoreId;  
-  } catch (error) {
-    
-  }
-  
+    idFire = conta.firestoreId;
+  } catch (error) {}
+
   const despesa = {
     id: Number(id),
     agente: document.getElementById("agente").value,
@@ -142,18 +169,17 @@ formDespesa.addEventListener("submit", async (event) => {
     valor: parseFloat(document.getElementById("valor").value),
     empresa: document.getElementById("empresa").value,
     tipoDespesa: document.getElementById("tipoDespesa").value,
-    observacao: document.getElementById("observacao").value
+    observacao: document.getElementById("observacao").value,
   };
 
   try {
     if (editando) {
-      
       const contaRef = doc(db, "contas", idFire);
       await updateDoc(contaRef, despesa);
-      window.location.reload()
+      window.location.reload();
     } else {
       await addDoc(collection(db, "contas"), despesa);
-      window.location.reload()
+      window.location.reload();
     }
 
     modal.style.display = "none";
@@ -166,12 +192,12 @@ formDespesa.addEventListener("submit", async (event) => {
 
 document.addEventListener("DOMContentLoaded", async function () {
   await getContas();
-  const buttonsEdit = document.querySelectorAll('.btn-editar')
-  buttonsEdit.forEach(el=>{el.addEventListener("click",(e)=>{
-    let idConta = e.target.parentElement.parentElement.querySelector("td").textContent
-    abrirModalEdicao(idConta)
-  })} )
-  
-  
-  
+  const buttonsEdit = document.querySelectorAll(".btn-editar");
+  buttonsEdit.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      let idConta =
+        e.target.parentElement.parentElement.querySelector("td").textContent;
+      abrirModalEdicao(idConta);
+    });
+  });
 });
