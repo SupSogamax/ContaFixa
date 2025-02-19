@@ -7,7 +7,7 @@ document
     const password = document.getElementById("password").value;
     const errorMessage = document.getElementById("errorMessage");
 
-    if (username === "financeiro" && password === "sogamax") {
+    if (username === "admin" && password === "1234") {
       errorMessage.style.display = "none";
       window.location.href = "/home.html";
     } else {

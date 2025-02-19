@@ -37,21 +37,22 @@ const db = getFirestore(app);
 
 let contas = [];
 const empresas = [
-  "Empresa A",
-  "Empresa B",
-  "Empresa C",
-  "Empresa D",
-  "Empresa E",
-  "Empresa F",
-  "Empresa G",
-  "Empresa H",
-  "Empresa I",
-  "Empresa J",
-  "Empresa K",
-  "Empresa L",
-  "Empresa M",
-  "Empresa N",
-  "Empresa O",
+  "SOGAMAX – ES",
+  "SOGAMAX - CARDOSO",
+  "SOGAMAX – CAMPOS",
+  "SOGAMAX – ITALVA",
+  "SOGAMAX – MG",
+  "SOGAMAX – SP",
+  "C.B – MG",
+  "C.B – MATRIZ",
+  "C.B. – ES",
+  "QUALIPAY",
+  "SGM – RJ",
+  "SGM – ES",
+  "HOLDINGRECPAG",
+  "HOLDINGPAGREC",
+  "JHM SERVIÇOS",
+  "MCLUS",
 ];
 
 const tiposDespesa = [
