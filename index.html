@@ -1,117 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de Contas Fixas</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css">
-</head>
-<body>
-    <div class="container-loud">
-        <div class="loud"></div>
-      </div>
-    
-    
-    <div class="container">
-        <h1>Controle de Contas Fixas</h1>
-        <button id="abrirModal">
-            <i class="ri-add-circle-line"></i> Cadastrar Nova Despesa
-        </button>
-        
-        
-        <!-- Filtros -->
-        <div class="filtros">
-            <div class="filtro">
-                <label for="filtroEmpresa"><i class="ri-building-line"></i> Empresa:</label>
-                <select id="filtroEmpresa">
-                    <option value="Todas">Todas</option>
-                    <!-- As opções serão preenchidas dinamicamente via JavaScript -->
-                </select>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Conta fixa</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <section>
+      <div class="login-container">
+        <h2>Entrar</h2>
+        <form>
+          <div class="input-group">
+            <div class="error-message" id="errorMessage">
+              Nome de usuário ou senha incorretos.
             </div>
-            <div class="filtro">
-                <label for="filtroObservacao"><i class="ri-chat-1-line"></i> Observação:</label>
-                <input type="text" id="filtroObservacao" placeholder="Ex: Pagamento">
-            </div>
-            <div class="filtro">
-                <label for="filtroDiaVencimento"><i class="ri-calendar-event-line"></i> Dia de Vencimento:</label>
-                <input type="number" id="filtroDiaVencimento" min="1" max="31" placeholder="Ex: 15">
-            </div>            
-            <div class="filtro">
-                <label for="filtroTipoDespesa"><i class="ri-money-dollar-circle-line"></i> Tipo de Despesa:</label>
-                <select id="filtroTipoDespesa">
-                    <option value="Todas">Todas</option>
-                    <!-- As opções serão preenchidas dinamicamente via JavaScript -->
-                </select>
-            </div>
-        </div>
 
-        <table id="contasTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Agente</th>
-                    <th>Descrição</th>
-                    <th class="centralizado">Dia do Vencimento</th>
-                    <th>Valor</th>
-                    <th>Empresa</th>
-                    <th>Tipo de Despesa</th>
-                    <th>Observação</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- As linhas serão preenchidas dinamicamente via JavaScript -->
-            </tbody>
-        </table>
-    </div>
-
-   <!-- Modal para cadastrar/editar despesa -->
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <span id="fecharModal" class="close">&times;</span>
-        <h2 id="modalTitulo">Cadastrar Nova Despesa</h2>
-        <form id="formDespesa">
-            <input type="hidden" id="idDespesa" name="idDespesa"> <!-- Campo oculto para ID da despesa -->
-            
-            <!-- ID e Agente como primeiros campos -->
-            <label for="id">ID:</label>
-            <input type="text" id="id" name="id" required>
-
-            <label for="agente">Agente:</label>
-            <input type="text" id="agente" name="agente" required>
-
-            <!-- Demais campos na nova ordem -->
-            <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" name="descricao" required>
-
-            <label for="diaVencimento">Dia do Vencimento:</label>
-            <input type="number" id="diaVencimento" name="diaVencimento" min="1" max="31" required>
-
-            <label for="valor">Valor:</label>
-            <input type="number" id="valor" name="valor" step="0.01" required>
-
-            <label for="empresa">Empresa:</label>
-            <select id="empresa" name="empresa" required>
-                <!-- As opções serão preenchidas dinamicamente via JavaScript -->
-            </select>
-
-            <label for="tipoDespesa">Tipo de Despesa:</label>
-            <select id="tipoDespesa" name="tipoDespesa" required>
-                <!-- As opções serão preenchidas dinamicamente via JavaScript -->
-            </select>
-
-            <label for="observacao">Observação:</label>
-            <input type="text" id="observacao" name="observacao">
-
-            <button type="submit">Salvar</button>
+            <label for="username">Nome</label>
+            <input type="text" id="username" placeholder="Seu nome" required />
+            <label for="password">Senha</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Sua senha"
+              required
+            />
+          </div>
+          <button class="enter" id="loginButton">Entrar</button>
         </form>
-    </div>
-</div>
-            </form>
-        </div>
-    </div>
-    
-    <script type="module" src="script.mjs"></script>
-</body>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
 </html>

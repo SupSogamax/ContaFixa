@@ -26,7 +26,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyCCs0S8CbwwYVBI0ZFAG8-p2o-sbdnjHBQ",
   authDomain: "contas-fixas-ec60f.firebaseapp.com",
   projectId: "contas-fixas-ec60f",
-  storageBucket: "contas-fixas-ec60f.firebasestorage.app",
+  storageBucket: "contas-fixas-ec60f.appspot.com",
   messagingSenderId: "56045884403",
   appId: "1:56045884403:web:07cfdea4581699174bb886",
   measurementId: "G-7KV3ZLLWZ6",
@@ -36,7 +36,24 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 let contas = [];
-const empresas = ["Empresa A", "Empresa B", "Empresa C"];
+const empresas = [
+  "Empresa A",
+  "Empresa B",
+  "Empresa C",
+  "Empresa D",
+  "Empresa E",
+  "Empresa F",
+  "Empresa G",
+  "Empresa H",
+  "Empresa I",
+  "Empresa J",
+  "Empresa K",
+  "Empresa L",
+  "Empresa M",
+  "Empresa N",
+  "Empresa O",
+];
+
 const tiposDespesa = [
   "Aluguel",
   "Energia",
@@ -83,15 +100,15 @@ async function getContas() {
       conta.firestoreId = doc.id;
       contas.push(conta);
     });
-    renderizarTabela();
+    ordenarPorId(); // Chama a função de ordenação automaticamente após carregar as contas
   } catch (error) {
     console.error("Erro ao buscar contas:", error);
   }
 }
 
-function renderizarTabela() {
+function renderizarTabela(contasFiltradas = contas) {
   tableBody.innerHTML = "";
-  contas.forEach((conta) => {
+  contasFiltradas.forEach((conta) => {
     conta.observacao === undefined ? (conta.observacao = "") : conta.observacao;
     const row = document.createElement("tr");
     row.innerHTML = `
@@ -107,7 +124,73 @@ function renderizarTabela() {
     `;
     tableBody.appendChild(row);
   });
+
+  // Adiciona o evento de clique após a renderização da tabela
+  const buttonsEdit = document.querySelectorAll(".btn-editar");
+  buttonsEdit.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      let idConta =
+        e.target.parentElement.parentElement.querySelector("td").textContent;
+      abrirModalEdicao(idConta);
+    });
+  });
 }
+
+let ordenacaoAscendente = true;
+
+function ordenarPorId() {
+  contas.sort((a, b) => {
+    if (ordenacaoAscendente) {
+      return a.id - b.id; // Ordena de forma crescente
+    } else {
+      return b.id - a.id; // Ordena de forma decrescente
+    }
+  });
+  renderizarTabela();
+  ordenacaoAscendente = !ordenacaoAscendente; // Alterna a ordem de ordenação
+}
+function aplicarFiltros() {
+  const empresaFiltro = filtroEmpresa.value;
+  const observacaoFiltro = filtroObservacao.value.toLowerCase();
+  const diaVencimentoFiltro = filtroDiaVencimento.value;
+  const tipoDespesaFiltro = filtroTipoDespesa.value;
+
+  const agenteFiltro = document
+    .getElementById("formAgente")
+    .value.toLowerCase();
+
+  const contasFiltradas = contas.filter((conta) => {
+    const empresaMatch =
+      empresaFiltro === "Todas" || conta.empresa === empresaFiltro;
+    const observacaoMatch =
+      observacaoFiltro === "" ||
+      conta.observacao.toLowerCase().includes(observacaoFiltro);
+    const diaVencimentoMatch =
+      diaVencimentoFiltro === "" ||
+      conta.diaVencimento === parseInt(diaVencimentoFiltro);
+    const tipoDespesaMatch =
+      tipoDespesaFiltro === "Todas" || conta.tipoDespesa === tipoDespesaFiltro;
+
+    const agenteMatch =
+      agenteFiltro === "" || conta.agente.toLowerCase().includes(agenteFiltro);
+
+    return (
+      empresaMatch &&
+      observacaoMatch &&
+      diaVencimentoMatch &&
+      tipoDespesaMatch &&
+      agenteMatch
+    );
+  });
+
+  renderizarTabela(contasFiltradas);
+}
+
+filtroEmpresa.addEventListener("change", aplicarFiltros);
+filtroObservacao.addEventListener("input", aplicarFiltros);
+filtroDiaVencimento.addEventListener("input", aplicarFiltros);
+filtroTipoDespesa.addEventListener("change", aplicarFiltros);
+document.getElementById("formAgente").addEventListener("input", aplicarFiltros);
 
 function abrirModalEdicao(id) {
   id = Number(id);
@@ -192,6 +275,8 @@ formDespesa.addEventListener("submit", async (event) => {
 
 document.addEventListener("DOMContentLoaded", async function () {
   await getContas();
+  aplicarFiltros();
+
   const buttonsEdit = document.querySelectorAll(".btn-editar");
   buttonsEdit.forEach((el) => {
     el.addEventListener("click", (e) => {
