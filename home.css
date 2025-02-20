@@ -184,15 +184,16 @@ body {
     flex: 1 1 100%;
   }
 }
+
 #contasTable {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 10px; /* Aumentei o espaçamento vertical entre as linhas */
+  border-spacing: 0 10px;
   margin: 20px 0;
   font-size: 15px;
   background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra mais suave e destacada */
-  border-radius: 12px; /* Bordas mais arredondadas */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
   overflow: hidden;
 }
 
@@ -204,7 +205,6 @@ body {
 #contasTable th,
 #contasTable td {
   padding: 16px 20px;
-  border-bottom: 1px solid #e5e7eb;
   text-align: center;
 }
 
@@ -227,29 +227,24 @@ body {
 }
 
 .buttons {
-  display: flex;
   gap: 10px;
+  display: flex;
 }
 
 .btn-excluir {
   padding: 10px 16px;
   border: none;
-  border-radius: 8px; /* Bordas mais arredondadas */
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Adicionei transform para efeito de hover */
+  transition: background-color 0.3s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
   gap: 8px;
   justify-content: center;
   background-color: #ff0000;
   color: #ffffff;
-}
-
-.btn-editar:hover {
-  background-color: #33bcf3;
-  transform: scale(1.05);
 }
 
 .btn-editar {
@@ -264,16 +259,18 @@ body {
   align-items: center;
   gap: 8px;
   justify-content: center;
-}
-
-.btn-editar {
   background-color: #02a4e4;
   color: #ffffff;
 }
 
-.btn-editar:hover {
+.btn-editar:hover,
+.btn-editar:focus {
   background-color: #33bcf3;
   transform: scale(1.05);
+}
+
+#contasTable tr {
+  border-bottom: 1px solid #e5e7eb;
 }
 
 @media (max-width: 768px) {
