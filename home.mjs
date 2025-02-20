@@ -113,14 +113,16 @@ function renderizarTabela(contasFiltradas = contas) {
     conta.observacao === undefined ? (conta.observacao = "") : conta.observacao;
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td>${conta.id}</td>
-      <td>${conta.agente}</td>
-      <td>${conta.descricao}</td>
-      <td class="centralizado">${conta.diaVencimento}</td>
-      <td>R$ ${conta.valor.toFixed(2)}</td>
-      <td>${conta.empresa}</td>
-      <td>${conta.tipoDespesa}</td>
-      <td>${conta.observacao}</td>
+     <td data-label="ID">${conta.id}</td>
+      <td data-label="Agente">${conta.agente}</td>
+      <td data-label="Descrição">${conta.descricao}</td>
+      <td class="centralizado" data-label="Dia Vencimento">${
+        conta.diaVencimento
+      }</td>
+      <td data-label="Valor">R$ ${conta.valor.toFixed(2)}</td>
+      <td data-label="Empresa">${conta.empresa}</td>
+      <td data-label="Tipo Despesa">${conta.tipoDespesa}</td>
+      <td data-label="Observação">${conta.observacao}</td>
       <td><button class="btn-editar">Editar</button></td>
     `;
     tableBody.appendChild(row);

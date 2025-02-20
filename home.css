@@ -239,10 +239,9 @@ body {
   background-color: #33bcf3;
 }
 
-/* Estilos responsivos para dispositivos móveis */
 @media (max-width: 768px) {
   #contasTable thead {
-    display: none; /* Oculta o cabeçalho em dispositivos móveis */
+    display: none;
   }
 
   #contasTable tbody tr {
@@ -262,7 +261,7 @@ body {
   }
 
   #contasTable tbody td::before {
-    content: attr(data-label); /* Exibe o rótulo da coluna */
+    content: attr(data-label);
     font-weight: bold;
     text-align: left;
     margin-right: 10px;
