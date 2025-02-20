@@ -6,12 +6,17 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #050616, #241e41, #27264d);
+  background: linear-gradient(
+    135deg,
+    #1c3faa,
+    #0d2a6b
+  ); /* Gradiente para mais profundidade */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; /* Usar min-height para garantir que funcione bem em telas pequenas */
   color: #fff;
+  line-height: 1.6; /* Melhora a legibilidade do texto */
 }
 
 section {
@@ -22,11 +27,11 @@ section {
 
 .login-container {
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px); /* Aumentei o blur para um efeito mais suave */
   padding: 2.5rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border-radius: 20px; /* Bordas mais arredondadas */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Borda mais suave */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
   text-align: center;
   animation: fadeIn 0.5s ease;
 }
@@ -42,45 +47,40 @@ section {
   }
 }
 
-h2 {
-  color: #fff;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-}
-
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.2rem;
 }
 
 .input-group label {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
   text-align: left;
 }
 
 .input-group input {
   width: 100%;
+  margin-bottom: 20px;
   padding: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.4); /* Borda mais visível */
+  border-radius: 10px; /* Bordas mais arredondadas */
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15); /* Fundo mais transparente */
   color: #fff;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .input-group input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6); /* Placeholder mais visível */
 }
 
 .input-group input:focus {
   border-color: #007bff;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3); /* Sombra mais suave */
+  background: rgba(255, 255, 255, 0.2); /* Fundo mais claro ao focar */
 }
 
 button.enter {
@@ -89,21 +89,24 @@ button.enter {
   background: linear-gradient(135deg, #49cc91, #41b681);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px; /* Bordas mais arredondadas */
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   margin-top: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  opacity: 0.9; /* Botão levemente transparente */
 }
 
 button.enter:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px #41b68150;
+  box-shadow: 0 6px 16px rgba(65, 182, 129, 0.4); /* Sombra mais pronunciada */
+  opacity: 1; /* Opacidade total ao passar o mouse */
 }
 
 button.enter:active {
   transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(65, 182, 129, 0.3); /* Sombra menor ao clicar */
 }
 
 .error-message {
@@ -132,9 +135,37 @@ button.enter:active {
   }
 }
 
+.title-login {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 10px;
+  justify-content: center;
+}
+
+.title-login h2 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra no texto para mais destaque */
+}
+
+.title-login img {
+  width: 30px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)); /* Sombra na imagem */
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  margin: 20px;
+  font-size: 12px;
+}
+
 @media (max-width: 480px) {
   .login-container {
     padding: 1.5rem;
+    border-radius: 16px; /* Bordas menos arredondadas em telas pequenas */
   }
 
   h2 {

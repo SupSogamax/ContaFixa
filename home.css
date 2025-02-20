@@ -32,7 +32,7 @@
 
 body {
   font-family: sans-serif;
-  background: linear-gradient(135deg, #050616, #241e41, #27264d);
+  background: linear-gradient(135deg, #1c3faa, #0d2a6b);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,18 +54,35 @@ body {
   transition: all 0.3s ease;
 }
 
-#title {
-  font-family: "Arial", sans-serif;
-  font-size: 32px;
-  font-weight: 500;
-  color: #211f34;
-  text-align: center;
-  margin: 20px 0;
-  letter-spacing: 1px;
+.title-login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 2rem;
+  gap: 10px;
+  justify-content: center;
 }
 
-#title i {
-  color: #0077b6;
+.title-login h2 {
+  color: #0d2a6b;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title-login p {
+  font-size: 1rem;
+  border-bottom: 2px solid #02a4e4;
+}
+
+.title-login img {
+  width: 30px;
 }
 
 .acoes {
@@ -167,67 +184,86 @@ body {
     flex: 1 1 100%;
   }
 }
-
 #contasTable {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* Aumentei o espaçamento vertical entre as linhas */
   margin: 20px 0;
   font-size: 15px;
   background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra mais suave e destacada */
+  border-radius: 12px; /* Bordas mais arredondadas */
   overflow: hidden;
 }
 
 #contasTable thead {
-  background-color: #211f34;
+  background: linear-gradient(135deg, #1c3faa, #0d2a6b);
   color: #ffffff;
 }
 
 #contasTable th,
 #contasTable td {
-  padding: 12px 16px;
-  text-align: center;
+  padding: 16px 20px;
   border-bottom: 1px solid #e5e7eb;
-}
-
-#contasTable td {
-  font-size: 14px;
-}
-
-#contasTable th.centralizado,
-#contasTable td.centralizado {
   text-align: center;
-}
-
-#contasTable tbody tr:hover {
-  background-color: #f9fafb;
-}
-
-#contasTable tbody tr:last-child td {
-  border-bottom: none;
 }
 
 #contasTable th {
-  font-weight: 100;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 #contasTable td {
-  text-align: center;
+  font-size: 14px;
   color: #374151;
 }
 
-.btn-editar {
-  padding: 6px 12px;
+#contasTable tbody tr {
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+}
+
+#contasTable tbody tr:hover {
+  background-color: #f3f4f6;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-excluir {
+  padding: 10px 16px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px; /* Bordas mais arredondadas */
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Adicionei transform para efeito de hover */
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  justify-content: center;
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+.btn-editar:hover {
+  background-color: #33bcf3;
+  transform: scale(1.05);
+}
+
+.btn-editar {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
 }
 
 .btn-editar {
@@ -237,6 +273,7 @@ body {
 
 .btn-editar:hover {
   background-color: #33bcf3;
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {

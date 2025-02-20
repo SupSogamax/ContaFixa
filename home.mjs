@@ -7,6 +7,7 @@ import {
   doc,
   updateDoc,
 } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+import { deleteDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
 
 const loading = () => {
   const loadingContainer = document.querySelector(".container-loud");
@@ -37,21 +38,21 @@ const db = getFirestore(app);
 
 let contas = [];
 const empresas = [
-  "SOGAMAX – ES",
-  "SOGAMAX - CARDOSO",
-  "SOGAMAX – CAMPOS",
-  "SOGAMAX – ITALVA",
-  "SOGAMAX – MG",
-  "SOGAMAX – SP",
-  "C.B – MG",
-  "C.B – MATRIZ",
-  "C.B. – ES",
-  "QUALIPAY",
-  "SGM – RJ",
-  "SGM – ES",
-  "HOLDINGRECPAG",
-  "HOLDINGPAGREC",
-  "JHM SERVIÇOS",
+  "Sogamax - ES",
+  "Sogamax - Cardoso",
+  "Sogamax - Campos",
+  "Sogamax - Italva",
+  "Sogamax - MG",
+  "Sogamax - SP",
+  "C.B. - MG",
+  "C.B. - Matriz",
+  "C.B. - ES",
+  "Qualipay",
+  "SGM - RJ",
+  "SGM - ES",
+  "Holding RecPag",
+  "Holding PagRec",
+  "JHM Serviços",
   "MCLUS",
 ];
 
@@ -91,7 +92,6 @@ function addFilterOptions() {
   });
 }
 addFilterOptions();
-
 async function getContas() {
   contas = [];
   try {
@@ -101,7 +101,19 @@ async function getContas() {
       conta.firestoreId = doc.id;
       contas.push(conta);
     });
-    ordenarPorId(); // Chama a função de ordenação automaticamente após carregar as contas
+
+    // Encontrar o maior ID para o próximo
+    let maiorId = 0;
+    contas.forEach((conta) => {
+      if (conta.id > maiorId) {
+        maiorId = conta.id;
+      }
+    });
+
+    // Armazenar o maior ID encontrado para usá-lo no próximo
+    localStorage.setItem("maiorId", maiorId);
+
+    ordenarPorId();
   } catch (error) {
     console.error("Erro ao buscar contas:", error);
   }
@@ -113,7 +125,7 @@ function renderizarTabela(contasFiltradas = contas) {
     conta.observacao === undefined ? (conta.observacao = "") : conta.observacao;
     const row = document.createElement("tr");
     row.innerHTML = `
-     <td data-label="ID">${conta.id}</td>
+      <td data-label="ID">${conta.id}</td>
       <td data-label="Agente">${conta.agente}</td>
       <td data-label="Descrição">${conta.descricao}</td>
       <td class="centralizado" data-label="Dia Vencimento">${
@@ -123,12 +135,38 @@ function renderizarTabela(contasFiltradas = contas) {
       <td data-label="Empresa">${conta.empresa}</td>
       <td data-label="Tipo Despesa">${conta.tipoDespesa}</td>
       <td data-label="Observação">${conta.observacao}</td>
-      <td data-label="Ação"><button class="btn-editar">Editar</button></td>
+      <td class="buttons" data-label="Ação">
+        <button class="btn-editar">Editar</button>
+        <button class="btn-excluir" data-id="${
+          conta.firestoreId
+        }">Excluir</button>
+      </td>
     `;
     tableBody.appendChild(row);
   });
 
-  // Adiciona o evento de clique após a renderização da tabela
+  document.querySelectorAll(".btn-excluir").forEach((button) => {
+    button.addEventListener("click", async (e) => {
+      const id = e.target.getAttribute("data-id");
+      if (confirm("Tem certeza que deseja excluir esta despesa?")) {
+        await excluirConta(id);
+      }
+    });
+  });
+
+  async function excluirConta(id) {
+    try {
+      const contaRef = doc(db, "contas", id);
+      await deleteDoc(contaRef);
+      alert("Despesa excluída com sucesso!");
+      window.location.reload();
+      await getContas();
+    } catch (error) {
+      console.error("Erro ao excluir conta:", error);
+      alert("Erro ao excluir despesa.");
+    }
+  }
+
   const buttonsEdit = document.querySelectorAll(".btn-editar");
   buttonsEdit.forEach((el) => {
     el.addEventListener("click", (e) => {
@@ -144,13 +182,13 @@ let ordenacaoAscendente = true;
 function ordenarPorId() {
   contas.sort((a, b) => {
     if (ordenacaoAscendente) {
-      return a.id - b.id; // Ordena de forma crescente
+      return a.id - b.id;
     } else {
-      return b.id - a.id; // Ordena de forma decrescente
+      return b.id - a.id;
     }
   });
   renderizarTabela();
-  ordenacaoAscendente = !ordenacaoAscendente; // Alterna a ordem de ordenação
+  ordenacaoAscendente = !ordenacaoAscendente;
 }
 function aplicarFiltros() {
   const empresaFiltro = filtroEmpresa.value;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Controle de Contas Fixas</title>
     <link rel="stylesheet" href="home.css" />
+    <link rel="shortcut icon" href="Logo Conta-Fixa.png" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css"
@@ -16,9 +17,12 @@
     </div>
 
     <div class="container">
-      <h1 id="title">
-        <i class="ri-bar-chart-box-line"></i> Controle de Contas Fixas
-      </h1>
+      <div class="title-login">
+        <div class="title">
+          <h2>FixControl</h2>
+        </div>
+        <p>Gestão fácil para despesas que não mudam.</p>
+      </div>
 
       <div class="acoes">
         <button onclick="logout()" id="login">
@@ -91,17 +95,15 @@
       <table id="contasTable" class="tabela-contas">
         <thead>
           <tr>
-            <th><i class="ri-hashtag"></i> ID</th>
-            <th><i class="ri-user-line"></i> Agente</th>
-            <th><i class="ri-file-text-line"></i> Descrição</th>
-            <th class="centralizado">
-              <i class="ri-calendar-event-line"></i> Vencimento
-            </th>
-            <th><i class="ri-money-dollar-circle-line"></i> Valor</th>
-            <th><i class="ri-building-line"></i> Empresa</th>
-            <th><i class="ri-price-tag-3-line"></i> Tipo</th>
-            <th><i class="ri-chat-3-line"></i> Observação</th>
-            <th><i class="ri-settings-3-line"></i> Ação</th>
+            <th>ID</th>
+            <th>Agente</th>
+            <th>Descrição</th>
+            <th class="centralizado">Vencimento</th>
+            <th>Valor</th>
+            <th>Empresa</th>
+            <th>Tipo</th>
+            <th>Observação</th>
+            <th>Ação</th>
           </tr>
         </thead>
         <tbody>
