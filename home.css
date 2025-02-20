@@ -238,6 +238,42 @@ body {
 .btn-editar:hover {
   background-color: #33bcf3;
 }
+
+/* Estilos responsivos para dispositivos móveis */
+@media (max-width: 768px) {
+  #contasTable thead {
+    display: none; /* Oculta o cabeçalho em dispositivos móveis */
+  }
+
+  #contasTable tbody tr {
+    display: block;
+    margin-bottom: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+  }
+
+  #contasTable tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 8px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  #contasTable tbody td::before {
+    content: attr(data-label); /* Exibe o rótulo da coluna */
+    font-weight: bold;
+    text-align: left;
+    margin-right: 10px;
+    color: #211f34;
+  }
+
+  #contasTable tbody td:last-child {
+    border-bottom: none;
+  }
+}
+
 /* Modal */
 .modal {
   display: none;
