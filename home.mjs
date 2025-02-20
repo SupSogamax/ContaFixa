@@ -155,10 +155,14 @@ function renderizarTabela(contasFiltradas = contas) {
       <td data-label="ID">${conta.id}</td>
       <td data-label="Agente">${conta.agente}</td>
       <td data-label="Descrição">${conta.descricao}</td>
-      <td class="centralizado" data-label="Dia Vencimento">${
-        conta.diaVencimento
-      }</td>
-      <td data-label="Valor">R$ ${conta.valor.toFixed(2)}</td>
+     <td class="centralizado" data-label="Dia Vencimento">
+  ${conta.diaVencimento.toString().padStart(2, "0")}
+</td>
+     <td data-label="Valor">R$ ${conta.valor.toLocaleString("pt-BR", {
+       style: "currency",
+       currency: "BRL",
+     })}</td>
+
       <td data-label="Empresa">${conta.empresa}</td>
       <td data-label="Tipo Despesa">${conta.tipoDespesa}</td>
       <td data-label="Observação">${conta.observacao}</td>
