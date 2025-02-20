@@ -123,7 +123,7 @@ function renderizarTabela(contasFiltradas = contas) {
       <td data-label="Empresa">${conta.empresa}</td>
       <td data-label="Tipo Despesa">${conta.tipoDespesa}</td>
       <td data-label="Observação">${conta.observacao}</td>
-      <td><button class="btn-editar">Editar</button></td>
+      <td data-label="Ação"><button class="btn-editar">Editar</button></td>
     `;
     tableBody.appendChild(row);
   });
