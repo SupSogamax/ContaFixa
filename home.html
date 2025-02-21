@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Controle de Contas Fixas</title>
+    <title>Painel - ControleFix</title>
     <link rel="stylesheet" href="home.css" />
-    <link rel="shortcut icon" href="Logo Conta-Fixa.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.min.css"
@@ -19,7 +19,8 @@
     <div class="container">
       <div class="title-login">
         <div class="title">
-          <h2>FixControl</h2>
+          <img src="/Ativo 1.svg" alt="" />
+          <h2>ControleFix</h2>
         </div>
         <p>Gestão fácil para despesas que não mudam.</p>
       </div>
@@ -114,8 +115,10 @@
     <!-- Modal para cadastrar/editar despesa -->
     <div id="modal" class="modal">
       <div class="modal-content">
-        <span id="fecharModal" class="close">&times;</span>
-        <h2 id="modalTitulo">Cadastrar Nova Despesa</h2>
+        <div class="titleModal">
+          <h2 id="modalTitulo">Cadastrar Nova Despesa</h2>
+          <span id="fecharModal" class="close">&times;</span>
+        </div>
         <form id="formDespesa">
           <input type="hidden" id="idDespesa" name="idDespesa" />
           <!-- Campo oculto para ID da despesa -->
